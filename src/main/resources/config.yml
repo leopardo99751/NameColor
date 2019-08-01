@@ -1,0 +1,5 @@
+color-character: '&' # The character to use for color codes in this config as well as to check for when verifying a user's input.
+messages:
+  success: "&7Name color set to %color%this&7."
+  too-many-arguments: "&cToo many arguments!"
+  no-arguments: "&cUsage: /namecolor <color codes>"

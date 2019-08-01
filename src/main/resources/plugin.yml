@@ -1,0 +1,12 @@
+name: NameColor
+version: 1.0
+author: [Xelades]
+main: me.xelades.dev.namecolor.NameColor
+api-version: 1.14
+
+depend: [PlaceholderAPI]
+
+commands:
+  namecolor:
+    permission: namecolor.use
+    description: "Set your name color"
