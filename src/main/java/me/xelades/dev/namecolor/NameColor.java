@@ -6,9 +6,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class NameColor extends JavaPlugin {
+import java.io.File;
+
+public class NameColor extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         // Setup default config
@@ -22,11 +27,11 @@ public class NameColor extends JavaPlugin {
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null){
             new Placeholders().register();
         }
-
-     }
+        getServer().getPluginManager().registerEvents(this, this);
+    }
 
     //@Override
-    //public void onDisable() {/
+    //public void onDisable() {
     //}
 
     @Override
@@ -63,6 +68,7 @@ public class NameColor extends JavaPlugin {
     }
 
     public void setNameColor(String color, Player player, Boolean tellPlayer) {
+        System.out.println("h");
         FileConfiguration config = getConfig();
         FileConfiguration storageFile = Storage.get();
         if (storageFile.contains(player.getUniqueId().toString())) {
@@ -77,7 +83,16 @@ public class NameColor extends JavaPlugin {
             player.sendMessage(ChatColor.translateAlternateColorCodes(config.get("color-character").toString().charAt(0), config.get("messages.success").toString().replaceAll("%color%", color)));
         }
         if (config.get("modify-displayname").equals(true)) {
-            player.setDisplayName(ChatColor.translateAlternateColorCodes('&', color) + color + ChatColor.stripColor(player.getDisplayName()));
+            player.setDisplayName(ChatColor.translateAlternateColorCodes('&', color) + player.getName());
+        }
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        FileConfiguration storageFile = Storage.get();
+        if (storageFile.contains(player.getUniqueId().toString())) {
+            setNameColor(storageFile.getString(player.getUniqueId().toString()), player, false);
         }
     }
 
