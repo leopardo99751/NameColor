@@ -26,7 +26,7 @@ public class NameColor extends JavaPlugin {
      }
 
     //@Override
-    //public void onDisable() {
+    //public void onDisable() {/
     //}
 
     @Override
@@ -63,6 +63,7 @@ public class NameColor extends JavaPlugin {
     }
 
     public void setNameColor(String color, Player player, Boolean tellPlayer) {
+        FileConfiguration config = getConfig();
         FileConfiguration storageFile = Storage.get();
         if (storageFile.contains(player.getUniqueId().toString())) {
             storageFile.set(player.getUniqueId().toString(), color);
@@ -73,9 +74,12 @@ public class NameColor extends JavaPlugin {
             Storage.save();
         }
         if (tellPlayer) {
-            FileConfiguration config = getConfig();
             player.sendMessage(ChatColor.translateAlternateColorCodes(config.get("color-character").toString().charAt(0), config.get("messages.success").toString().replaceAll("%color%", color)));
         }
+        if (config.get("modify-displayname").equals(true)) {
+            player.setDisplayName(ChatColor.translateAlternateColorCodes('&', color) + color + ChatColor.stripColor(player.getDisplayName()));
+        }
+        ChatColor.
     }
 
 }

@@ -1,3 +1,4 @@
+modify-displayname: false # For those pesky plugins that don't support PlaceholderAPI! Currently only updates displayname every time someone does /namecolor.
 color-character: '&' # The character to use for color codes in this config as well as to check for when verifying a user's input.
 messages:
   success: "&7Name color set to %color%this&7."
