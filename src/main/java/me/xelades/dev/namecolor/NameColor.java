@@ -79,7 +79,6 @@ public class NameColor extends JavaPlugin {
         if (config.get("modify-displayname").equals(true)) {
             player.setDisplayName(ChatColor.translateAlternateColorCodes('&', color) + color + ChatColor.stripColor(player.getDisplayName()));
         }
-        ChatColor.
     }
 
 }
