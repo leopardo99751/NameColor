@@ -68,7 +68,6 @@ public class NameColor extends JavaPlugin implements Listener {
     }
 
     public void setNameColor(String color, Player player, Boolean tellPlayer) {
-        System.out.println("h");
         FileConfiguration config = getConfig();
         FileConfiguration storageFile = Storage.get();
         if (storageFile.contains(player.getUniqueId().toString())) {
